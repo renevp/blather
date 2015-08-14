@@ -7,9 +7,13 @@
         {% for blat in blat_list %}
             <dt>{{blat.text}}</dt>
             <dd>
-                <a href="{% url 'detail' pk=blat.id%}">{{ blat.created_on|naturaltime }}</a>
+                <a href="{% url 'detail' pk=blat.id%}">
+                    {{ blat.created_on|naturaltime }} by @{{ blat.created_by }}</a>
                 {% if blat.via %}
                     <a href="{{ blat.via }}">/via</a>
+                {% endif %}
+                {% if blat.created_by == user %}
+                    <a href="{% url 'editblat' pk=blat.id%}">edit this</a>
                 {% endif %}
         {% endfor %}
         </dl>
