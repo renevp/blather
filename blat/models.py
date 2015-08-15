@@ -11,7 +11,7 @@ class Blat(models.Model):
     def total_likes(self):
         return self.like_set.count()
     
-    def __unicode__(self):
+    def __unicode__(self): # python 3 use def __str__(self): instead
         return self.text[:50]
     
 class Like(models.Model):

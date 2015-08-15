@@ -13,7 +13,7 @@ class IndexView(generic.ListView):
     context_objectname = 'blat_list'
     
     def get_queryset(self):
-        return Blat.objects.order_by('-created_on')[:20]
+        return Blat.objects.select_related('created_by').order_by('-created_on')[:20]
 
 class DetailView(generic.DetailView):
     model = Blat
